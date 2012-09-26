@@ -1,0 +1,171 @@
+# #sept2012 September 2012
+
+[[TOC]]
+
+
+## #elwyn-prophet [Publication of PRoPHET routing protocol RFC](https://www.ietf.org/mail-archive/web/dtn-interest/current/msg04549.html) (9/1)
+
+### Participants
+
+* Elwyn Davies, elwynd@folly.org.uk
+
+### Abstract
+
+The authors Anders, Avri, Elwyn and Samo have announced RFC 6693 [[0]][elwyn-prophet-0], [[1]][elwyn-prophet-1].
+
+### References
+
+[elwyn-prophet-0]: http://www.rfc-editor.org/rfc/rfc6693.txt "RFC 6693"
+[[0]](http://www.rfc-editor.org/rfc/rfc6693.txt) RFC 6693
+
+[elwyn-prophet-1]: http://tools.ietf.org/html/rfc6693 "RFC 6693"
+[[1]](http://tools.ietf.org/html/rfc6693) RFC 6693
+
+
+## #kruse-udp-cl [UDP/DCCP draft](https://www.ietf.org/mail-archive/web/dtn-interest/current/msg04552.html) (9/3)
+
+### Participants
+
+* Hans Kruse, kruse@ohio.edu
+
+### Abstract
+
+The UDP Convergence Layer draft for Bundle and LTP transport have been updated [[0]][kruse-udp-cl-0], [[1]][kruse-udp-cl-1].
+
+    This document specifies the preferred method for transporting DTN
+    protocol data over the Internet using datagrams.  The specification
+    covers convergence layers for the Bundle Protocol as well as the
+    transportation of LTP segments.  UDP and DCCP are the candidate
+    datagram protocols discussed.  UDP can only be used on a local
+    network, or in cases where the DTN node implements explicit
+    congestion control.  DCCP does address the congestion control
+    problem; however, the availability of implementations is limited.
+
+### References
+
+[kruse-udp-cl-0]: https://datatracker.ietf.org/doc/draft-irtf-dtnrg-dgram-clayer "draft-irtf-dtnrg-dgram-clayer"
+[[0]](https://datatracker.ietf.org/doc/draft-irtf-dtnrg-dgram-clayer) draft-irtf-dtnrg-dgram-clayer
+
+[kruse-udp-cl-1]: http://tools.ietf.org/html/draft-irtf-dtnrg-dgram-clayer-00 "draft-irtf-dtnrg-dgram-clayer-00"
+[[1]](http://tools.ietf.org/html/draft-irtf-dtnrg-dgram-clayer-00) draft-irtf-dtnrg-dgram-clayer-00
+
+
+## #zinky-fec-intro [Erasure Coding Extension Internet Drafts available for review](https://www.ietf.org/mail-archive/web/dtn-interest/current/msg04553.html) (7/17, 9/4-9/6)
+
+### Participants
+
+* John Zinky, jzinky@bbn.com
+* William D. Ivancic, william.d.ivancic@nasa.gov
+
+### Abstract
+
+John Zinky announced an extention to the BP protocol to support fragmentation of large payloads in highly disrupted networks with FEC [[0]][zinky-fec-intro-0] [[1]][zinky-fec-intro-1] [[2]][zinky-fec-intro-2].
+
+### Discussion
+
+William asked if FEC could be applied to an encrypted bundle. John clarified that the bundle fragmentation and reassembly rules of bundle-security are overridden by erasure-encoding-objects.
+
+### References
+
+[zinky-fec-intro-0]: http://tools.ietf.org/html/draft-irtf-dtnrg-zinky-erasure-coding-extension-00 "draft-irtf-dtnrg-zinky-erasure-coding-extension-00"
+[[0]](http://tools.ietf.org/html/draft-irtf-dtnrg-zinky-erasure-coding-extension-00) draft-irtf-dtnrg-zinky-erasure-coding-extension-00
+
+[zinky-fec-intro-1]: http://tools.ietf.org/html/draft-irtf-dtnrg-zinky-erasure-coding-objects-00 "draft-irtf-dtnrg-zinky-erasure-coding-objects-00"
+[[1]](http://tools.ietf.org/html/draft-irtf-dtnrg-zinky-erasure-coding-objects-00) draft-irtf-dtnrg-zinky-erasure-coding-objects-00
+
+[zinky-fec-intro-2]: http://tools.ietf.org/html/draft-irtf-dtnrg-zinky-random-binary-fec-scheme-00 "draft-irtf-dtnrg-zinky-random-binaryfec-scheme-00"
+[[2]](http://tools.ietf.org/html/draft-irtf-dtnrg-zinky-random-binary-fec-scheme-00) draft-irtf-dtnrg-zinky-random-binary-fec-scheme-00
+
+
+## #zinky-fec-dis [DTN protocol suite, FEC as an example of cross cutting traditional network layering](https://www.ietf.org/mail-archive/web/dtn-interest/current/msg04555.html) (9/4-9/9)
+
+### Participants
+
+* John Zinky, jzinky@bbn.com
+* Scott Burleigh, scott.c.burleigh@jpl.nasa.gov
+* Jayram Déshpandé, jay\_desh9@yahoo.com
+* Kevin Fall, kfall@qualcomm.com
+* Lloyd Wood, l.wood@surrey.ac.uk
+
+### Abstract
+
+John Zinky has been working on an implementation to add FEC to BP as a service. The purpose of the Erasure Code extension [[0]][zinky-fec-dis-0] is to provide a recovery mechanism for a group of bundles that represent a single Data Object (perhaps due to intentional bundle fragmentation).
+
+John Zinky identified these aspects in the extension block for implementation clarification:
+
+* Data Object Format: Describes the format of the combined payload over multiple bundles by adding a `next` protocol field.
+* Data Object UUID: Identifies the group of bundles associated with the single data object.
+* Handling Specification: Describes parameters for traffic shaping and feedback messages.
+* End-to-End Feedback Messages: Request for feedback messages (e.g. ack, stop, purge) to improve FEC efficiency.
+
+These aspects cover multiple traditional networking layers and also provide generic services that might be useful beyond the Erasure Coding extension.
+
+### Discussion
+
+Scott likened some of John's extension block features to some current work within NASA termed "Delay-Tolerant Payload Condition" (DTPC, not yet published). DTPC is an End-to-End Bundle Application Service Layer, providing these services above the BP layer. DTPC demonstrates that End-to-End services need not to cross networking layers because the features are only relevant at the end points. Thus, these features can be specified without modifying BP itself.
+
+Jayram presented his master's thesis "Satisfying End to End Quality of Service Requirements in DTN Environments" [[1]][zinky-fec-dis-1] in which QoS is used to optimize the immediate next hop link resource (e.g. bandwidth). This is done by adjusting transmission parameters such as the amount of FEC applied to the bundle conditioned on the QoS guarantee (both Urgency/Immediacy and Importance/Intrinsic Value).
+
+John clarified some differences between his proposal and Jayram's work. In particular, John's approach works for a group of bundles, rather than individual bundles. John also noted that the BP spec does account for the two QoS guarantees, only Urgency.
+
+Kevin reminded the list that there are two approaches to Reliable Multicast being discussed in the IETF Reliable Multicast Transport (RMT) WG and RG - NACK-based (rfc 5740) which requires a back channel, and FEC-based (e.g. FLUTE, file delivery protocol [[2]](ref-dis-2]). Kevin believes that that it would be advantageous for the FEC style to work at the networking layer for ad-hac or mule-based networks (e.g. FEC in DTN networks [[3]](ref-dis-3]). 
+
+Lloyd brought up his concern on the layering nature of these services and where BP stands. Scott clarified that BP is an overlay network protocol that relies on some existing link layer (Internet, R/F, etc).
+
+### References
+
+[zinky-fec-dis-0]: http://tools.ietf.org/html/draft-irtf-dtnrg-zinky-erasure-coding-extension-00 "draft-irtf-dtnrg-zinky-erasure-coding-extension-00"
+[[0]](http://tools.ietf.org/html/draft-irtf-dtnrg-zinky-erasure-coding-extension-00) draft-irtf-dtnrg-zinky-erasure-coding-extension-00
+
+[zinky-fec-dis-1]: http://etd.ohiolink.edu/view.cgi?acc\_num=ohiou1163644692 "Satisfying End to End Quality of Service Requirements in DTN Environments"
+[[1]](http://etd.ohiolink.edu/view.cgi?acc\_num=ohiou1163644692) Satisfying End to End Quality of Service Requirements in DTN Environments
+
+[zinky-fec-dis-2]: http://www.ietf.org/id/draft-ietf-rmt-flute-revised-16.txt "draft-ietf-rmt-flute-revised-16"
+[[2]](http://www.ietf.org/id/draft-ietf-rmt-flute-revised-16.txt) draft-ietf-rmt-flute-revised-16
+
+[zinky-fec-dis-3]: http://conferences.sigcomm.org/sigcomm/2005/paper-JaiDem.pdf "Using Redundancy to Cope with Failres in a Delay Tolerant Network"
+[[3]](http://conferences.sigcomm.org/sigcomm/2005/paper-JaiDem.pdf) Using Redundancy to Cope with Failres in a Delay Tolerant Network
+
+
+## #christos-dtn2-perf [On measuring the DTN2 performance](http://www.ietf.org/mail-archive/web/dtn-users/current/msg01558.html) (9/6 - 9/12)
+
+### Participants
+
+* Tselikis Christos, TSELIKIS.Christos@haicorp.com
+* William D. Ivancic, william.d.ivancic@nasa.gov
+* Razvan Beuran, razvan@nict.go.jp
+* Carlo Caini, ccaini@arces.unibo.it
+* Lloyd Wood, l.wood@surrey.ac.uk
+
+### Abstract
+
+Tselikis is interested in gathering performance metrics for DTN2, similar to the previously written DTNperf (v2) application. Tselikis hopes that there is a DTNperf (v3) in the works to address the shortcomings of the previous version.
+
+### Discussion
+
+Michele is developing DTNperf (v3), which should be released soon, as part of her thesis work. Carlo summarized the development of DTNperf - the design goals of each version (v1, v2, v3) and new features planned for v3.
+
+William and Razvan comment on the notion of "performance" in DTNs. It is not clear what metrics should be used, whether the metrics reliability and meaningfully measure the state of the network, and how the implementation of the network evaluation tool and testbed can interfere with the collection of metrics. In particular, William believes that the notion of `delay` is offset by the use of `bundle lifetime` - defining the `lifetime` negates the value of `delay` since it determines the usefulness of the bundle over time. Tselikis clarified that such information may still be useful for other metrics.
+
+Regarding metrics, Lloyd pointed out work done by Psaras [[0]][christos-dtn2-perf-0] and in particular his paper on "Six years since first DTN papers. Is there a clear target?" [[1]][christos-dtn2-perf-1]. In summary, evaluation metrics for DTN must take into account the `desired service outcome`, `system constraints`, and `service differentiation`. Metrics alone are not enough to drive implementation; the desired applications must be jointly evaluated.
+
+William mentions his internet draft "Store, Carry and Forward Problem Statement" [[2]][christos-dtn2-perf-2], which describes several scenarios in which SCF capability is needed, but current technologies, in particular DTN and JSM, are not quite suited. William notes that there still needs to be more demanding studies to determine the proper
+
+Tselikis finalized the issues, having identified `user-application metrics` and `network utilization metrics`. Tselikis notes that bandwidth metrics were studied n "Implementing Delay Tolerant Networking" [[3]][christos-dtn2-perf-3] and that multiple large-volume flows may be interesting with mention of "DTN: An Architectural Retrospective" [[4]][christos-dtn2-perf-4].
+
+### References
+
+[christos-dtn2-perf-0]: http://www.ee.ucl.ac.uk/~uceeips/UCL_site/About...html "Ioannis Psaras"
+[[0]](http://www.ee.ucl.ac.uk/~uceeips/UCL\_site/About...html) Ioannis Psaras
+
+[christos-dtn2-perf-1]: http://www.cl.cam.ac.uk/~fb375/extremecom/2009/extremecom2009\_Psaras.pdf "Six years since first DTN papers. Is there a clear target?"
+[[1]](http://www.cl.cam.ac.uk/~fb375/extremecom/2009/extremecom2009\_Psaras.pdf) Six years since first DTN papers. Is there a clear target?
+
+[christos-dtn2-perf-2]: http://ietfreport.isoc.org/ids/draft-ivancic-scf-problem-statement-00.txt "Store, Carry and Forward Problem Statement"
+[[2]](http://ietfreport.isoc.org/ids/draft-ivancic-scf-problem-statement-00.txt) Store, Carry and Forward Problem Statement
+
+[christos-dtn2-perf-3]: http://www.dtnrg.org/docs/docs/papers/demmer-irb-tr-04-020.pdf "Implementing delay tolerant networking"
+[[3]](http://www.dtnrg.org/docs/docs/papers/demmer-irb-tr-04-020.pdf) Implementing delay tolerant networking
+
+[christos-dtn2-perf-4]: webir.tcd.ie/bitstream/2262/39149/1/DTN%20-%20an%20architectural%20retrospective.pdf "DTN: an architectural retrospective"
+[[4]](http://webir.tcd.ie/bitstream/2262/39149/1/DTN%20-%20an%20architectural%20retrospective.pdf) DTN: an architectural retrospective

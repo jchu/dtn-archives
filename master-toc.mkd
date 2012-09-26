@@ -1,0 +1,127 @@
+# dtn-interest, dtn-users Archive Summaries
+
+[dtn-interest](http://irtf.org/mailman/listinfo/dtn-interest), [The Delay-Tolerant Networking Research Group (DTNRG)](http://www.dtnrg.org/wiki) mailing list for academia and industry.
+
+Note: older list archives hosted at [intel-research](http://maillists.intel-research.net/pipermail/dtn-interest/)
+
+> The Delay-Tolerant Networking Research Group (DTNRG) is a research group chartered as part of the Internet Research Task Force (IRTF). Members of DTNRG are concerned with how to address the architectural and protocol design principles arising from the need to provide interoperable communications with and among extreme and performance-challenged environments where continuous end-to-end connectivity cannot be assumed. Said another way, we are concerned with interconnecting highly heterogeneous networks together even if end-to-end connectivity may never be available. Examples of such environments include spacecraft, military/tactical, some forms of disaster response, underwater, and some forms of ad-hoc sensor/actuator networks. It may also include Internet connectivity in places where performance may suffer such as developing parts of the world.
+ 
+> DTNRG members research aspects of delay-tolerant networking in a number of ways including academic publications, technical specifications, several active mailing lists, and code (reference implementation) development. DTNRG holds semi-regular teleconferences for software developers and occasional face-to-face public meetings. The public meetings usually occur in conjunction with an IETF meeting. The current co-chairs for DTNRG are Kevin Fall (Qualcomm), Stephen Farrell (Trinity College, Dublin) and Jörg Ott (Aalto University, Helsinki). Back in 2006 Stephen wrote a book on DTN.
+
+[dtn-users](https://www.irtf.org/mailman/listinfo/dtn-users), developer mailing list
+
+> Discussion list for users of the DTN reference implementation. This list is meant for developers and users of the DTN reference implementation
+
+## [2010 September][2012.09]
+
+Notable Highlights:
+
+* PRoPHET protocol RFC published
+* UDP Convergence Layer draft renewed
+* Erasure Coding Extension drafts proposed
+* dtn2 performance metrics discussed
+* dtnrg-at-google materials archived
+
+Following July 2012's meeting (dtnrg-at-google), some groups have already delivered some promised milestones - PRoPHET and UDP CL.
+
+The discussion on Erasure Coding brought up the issue of services and protocol layering. It is still unclear how new features should be implemented in the DTN world. The Erasure Coding drafts intended to add FEC in order to add recovery for groups of related bundles through an Extension Block. However, it is noted that this is an end-to-end service and does not require modifying BP itself.
+
+The revival of the dtn2 performance metrics discussion reveals that there is still no clear understanding of the metrics needed to evaluate DTN networks and how to define and measure the metrics. Furthermore, network performance is closely tied to service requirements of applications. More research needs to be done in this area.
+
+Threads:
+
+  * [Publication of PRoPHET routing protocol RFC][elwyn-prophet]
+  * [UDP/DCCP draft][kruse-udp-cl]
+  * [Erasure Coding Extension Internet Drafts available for review][zinky-fec-intro]
+  * [DTN protocol suite, FEC as an example of cross cutting traditional network layering][zinky-fec-dis]
+  * [On measuring the DTN2 performance][christos-dtn2-perf]
+
+## [2012 August][2012.08]
+
+Notable Highlights:
+
+* TCP CL draft updated
+* HTTP over DTN draft published
+
+Following July 2012's meeting (dtnrg-at-google), some groups have already delivered some promised milestones - TCP CL and HTTP over BP.
+
+The benefit of running HTTP over BP have no been discussed, but it has been demonstrated to be a viable protocol adaptation. In particular, the implementation relies heavy on proxy/cache models.
+
+Threads:
+
+  * [Review for TCP CL][ott-tcp-clayer-review]
+  * [New Version Notification for draft-perreault-dtnrg-http-00.txt][perreault-http-draft-]
+
+## [2012 July][2012.07]
+
+Notable Highlights:
+
+* dtnrg-at-google
+* generic routing framework proposal
+* integrity check discussion
+
+This month, dtnrg-at-google occurred. Much has happened at the meeting, but there has not yet been a summary made.
+
+For the meeting, the pursuit for a generic routing framework was proposed. Currently, PRoPHET and dLIFE are on the table as viable routing protocols for DTN. The generic routing framework would enforce interoperability and allow for more protocols to be developed. It is not yet clear what DTNRG has decided to do on this point.
+
+The discussion on integrity checks focused on the role of the End-to-End principal applies to RFC 5050 and beyond. Integrity checks were excluded in End-to-End in favor of letting applications make the decision. However, it is not clear if hop-by-hop integrity checking is needed or how it might be implemented (retransmission triggering would require NACKs). No final decision has been made but there has been some forgotten efforts made.
+
+Threads:
+
+  * [Thanks/Slides/Minutes ... (dtnrg-at-google)][google-mat]
+  * [routing issues @ DTNRG][paulo-routing]
+  * [Question Regarding Custodial Transfer][travis-custody]
+
+## [2012 May][2012.05]
+
+Notable Highlights:
+
+* RFC 5050 revision discussion
+
+The RFC 5050 revision discussion prompted the list to identify any points that might changed, removed, or added should the document be revised. Only a few points were discussed:
+
+* New security framework which would require a new incompatible document ion
+* Naming - nodes versus endpoints
+
+Note: Formal discussion was brought up at dtnrg-at-google as 5050bis
+
+  * [RFC 5050 revision?][farrell-5050-dis]
+
+## [2012 April][2012.04]
+
+Notable Highlights:
+
+* BP Firewall
+
+William brought up the concept of firewalls for BP traffic, which is being investigated at NASA GRC. A firewall would be able to manage local resources based on local policies. It isn't yet clear how useful this would be or if it is in line with current use cases, but it has garnered some interest.
+
+Threads:
+
+  * [BP-Tables][ivancic-firewall]
+
+## [2012 March][2012.03]
+
+Notable Highlights:
+
+* IETF-83 DTNRG session
+
+Notes from the meeting:
+
+* Specs needed for convergence layer, application framework, naming, discovery/routing
+* IANA registrations for LTP, bundle protocol, CCSDS areas
+* BPQ extension in cooperation with ICN (information centric networking)
+* SQL based storage
+  * Part of Mitre code for DTN2
+  * Used in SAIL ICN
+* Cipher Suits
+  * Elliptic Curves added
+  * New Extension Integrity Block (EIB) - sigs for extensions
+* NURC - underwater sensor networks with DTN
+  * custom underwater convergence layer
+  * CBHE great for underwater
+  * current routing mechanisms don't help
+  * bundle level fragmentation heavyweight
+
+Threads:
+
+  * [(Very) draft minutes][farrell-ietf-83]

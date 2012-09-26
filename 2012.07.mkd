@@ -1,0 +1,142 @@
+# #2012.07 July 2012
+
+[[TOC]]
+
+## #google-mat [Thanks/Slides/Minutes ...](https://www.ietf.org/mail-archive/web/dtn-interest/current/msg04509.html) (dtnrg-at-google) (7/27 - 7/31, 9/6)
+
+### Participants
+
+* Stephen Farrell, stephen.farrell@cs.tcd.ie
+
+* Kevin Fall, kfall@qualcomm.com
+
+* Joerg Ott, jo@netlab.tkk.fi
+* William Ivancic, william.d.ivancic@nasa.gov
+* Scott Burleigh, scott.c.burleigh@jpl.nasa.gov
+* Paulo Mendes, paulo.mendes@ulusofona.pt
+
+### Abstract
+
+Stephen thanks everyone and has posted some materials. The minutes still need to be sanitized.
+
+### Discussion
+
+Paulo had some leftover questions:
+
+1. Is there a roadmap for the dLife RG draft?
+2. Are there plans for a generic routing framework?
+
+Neither of these have been answered on the list.
+
+### References
+
+[google-mat-0]: http://down.dsg.cs.tcd.ie/dtnrg-at-google-12 "dtnrg-at-google"
+[[0]](http://down.dsg.cs.tcd.ie/dtnrg-at-google-12) dtnrg-at-google
+
+[google-mat-1]: http://down.dsg.cs.tcd.ie/dtnrg-at-google-12/raw-mins.txt "dtnrg-at-google raw minutes"
+[[1]](http://down.dsg.cs.tcd.ie/dtnrg-at-google-12/raw-mins.txt) dtnrg-at-google raw minutes
+
+## #paulo-routing [Routing issues @ DTNRG](https://www.ietf.org/mail-archive/web/dtn-interest/current/msg04496.html) (7/24 - 7/30)
+
+### Participants
+
+* Paulo Mendes, paulo.mendes@ulusofona.pt
+* Juliano Naves, julianofischer@gmail.com
+* William D. Ivancic, william.d.ivancic@nasa.gov
+* James McKim, james.h.mckim@nasa.gov
+* Kevin Fall, kfall@qualcomm.com
+
+### Abstract
+
+Discussion on the future of routing at DTNRG. Paulo raises some questions:
+
+1. Should DTNRG be doing more routing work?
+2. What kind of routing protocols should the community be looking at?
+
+Routing is an essential part of any DTN architecture. However, there has been no effort to advance multiple routing protocols for DTN besides PRoPHET. The two major trends in routing are mobility-aware and social-aware approaches. Paulo wants to push a new routing protocol dLife as a DTNRG draft and work towards a generic routing specification in which both PRoPHET and dLife, as well as future protocols, can work with.
+
+### Discussion
+
+Juliano wonders if the raw information collected and used by routing protocols could be considered the 'basic protocol'. DTN nodes would be responsible for collecting, storing, and making available this information for any protocol. Paulo agrees, but this is not enough for a routing framework.
+
+William notes that generic routing would be difficult with a proper addressing scheme (which RFC5050 does not specify). For example, aggregate routing requires addressing.
+
+Paulo identifies two tasks to pursue:
+
+1. Identify protocol similarities in existing specs
+2. Determine how a generic routing framework would fit in a DTN architecture.
+
+William notes that James McKim at NASA GRC has been tasked to reverse enginner DTLSR in DTN2.
+
+
+## #ivanocic-google [Google Meeting Input - Ivancic](https://www.ietf.org/mail-archive/web/dtn-interest/current/msg04507.html) (7/27)
+
+### Participants
+
+* William D. Ivancic, william.d.ivancic@nasa.gov
+
+### Abstract
+
+William has some comments on the proposed discussions for dtngr-at-google.
+
+RFC505bis has two paths - research or real world
+
+The research path is facilitated by the flexibility of the protocol provided by the extension blocks.
+
+A real world protocol has a few technical issues that will need to be worked out.
+
+1. Addressing - only naming is defined
+2. Simpler security - BSP is complicated and not fully implemented in reference implementations
+3. Security doesn't work with reactive fragmentation
+4. Protection against routing loops
+5. Time - time may not be needed in the protocol
+6. Expected default operations of a BP-agent
+7. Firewalls and filters - real life rules for resource usage
+8. Size of bundles - architecture decision
+9. Custodial transfer default?
+10. Reliability should be done without security
+
+
+## #travis-custody [Question Regarding Custodial Transfer](https://www.ietf.org/mail-archive/web/dtn-interest/current/msg04459.html) (7/11 - 7/14)
+
+### Participants
+
+* Eric Travis, eric.dot.travis@gmail.com
+* Daniel Ellard, dellard@bbn.com
+* William D. Ivancic, william.d.ivancic@nasa.gov
+* Stephen Farrell stephen.farrell@cs.tcd.ie
+* Vint Cerf, vint@google.com
+* Lloyd Wood, l.wood@surrey.ac.uk
+* Kevin Fall, kfall@qualcomm.com
+* Scott Burleigh, scott.c.burleigh@jpl.nasa.gov
+
+### Abstract
+
+Eric would like to know why custodial transfer, as described in RFC 5050, does not include an integrity check.
+
+### Discussion
+
+Daniel understands it assumptions in RFC 5050: CL adapter or transport provides integrity and Bundle protocol agents will not forge bundles or custody transfer ACKs. Otherwise, BSP is used to ensure these assumptions. As many agree, William points out that requiring BSP just for integrity checking is overkill.
+
+Stephen points out a draft that described reliability-only ciphersuites for BSP that seperates reliability from security, allowing for a simpler implementation of BSP just for integrity checks [[0]][travis-custody-0]. Unfortunately, Lloyd's group gave up trying to promote interest for it in DTNRG after having published "A Bundle of Problems" [[1]][travis-custody-1].
+
+Lloyd demonstrates the need for integrity checking with traditional HTTP over TCP in a reliable terrestrial network (Akamai caching) [[2]][travis-custody-2]. 
+
+Kevin offers a clear concise rationale behind the exclusion of integrity checks in RFC 5050 - the end-to-end principal. e2e dictates that the endpoint is the ultimate decision as to whether the underlying communication fabric has done an adequate job in delivering the data. Some applications may allow for minor corruption while others don't. At hopes, the closest notion to integrity checks are the custody transfers. However, custody transfers only 'enhance' delivery witn no guarantees of final delivery nor content integrity.
+
+Eric disagrees some with of the points. Eric believes e2e should be between from source storage to destination storage (using file transfer as an example). In this case, Bundle custodians should not accept corrupted bundle payloads because it does not match the overall service model. This is because each custodial path becomes its own e2e network path with the custodians as endpoints.
+
+Eric proposes that integrity checking be integrated with custodial transfer because custodian signals provide an unreliable feedback mechanism to trigger retransmissions. Without custodial transfer, the agents can at most drop corrupted bundles.
+
+Lloyd believes that inter-node signaling (e.g the custodian ACK/NACK for integrity checks) is in accordance with e2e (to increase performance wherever possible).
+
+### References
+
+[travis-custody-0]: http://tools.ietf.org/html/draft-irtf-dtnrg-bundle-checksum-09 "Reliability-only Ciphersuites for the Bundle Protocol"
+[[0]](http://tools.ietf.org/html/draft-irtf-dtnrg-bundle-checksum-09) Reliability-only Ciphersuites for the Bundle Protocol
+
+[travis-custody-1]: http://personal.ee.surrey.ac.uk/Personal/L.Wood/publications/wood-ieee-aerospace-2009-bundle-problems.pdf "A Bundle of Problems"
+[[1]](http://personal.ee.surrey.ac.uk/Personal/L.Wood/publications/wood-ieee-aerospace-2009-bundle-problems.pdf) A Bundle of Problems
+
+[travis-custody-2]: http://lists.w3.org/Archives/Public/ietf-http-wg/2012JulSep/0134.html "[ietf-http-wg] Content-Integrity header"
+[[2]](http://lists.w3.org/Archives/Public/ietf-http-wg/2012JulSep/0134.html) [ietf-http-wg] Content-Integrity header

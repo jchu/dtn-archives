@@ -1,0 +1,38 @@
+# #2012.04 April 2012
+
+[[TOC]]
+
+
+## #ivancic-firewall BP-Tables (4/23)
+
+### Participants
+
+* William D. Ivancic, william.d.ivancic@nasa.gov
+* Marc Blanchet, marc.blanchet@viagenie.ca
+* Simon Perreault, simon.perreault@viagenie.ca
+* Dennis Iannicca, dennis.c.iannicca@nasa.gov
+* Scott Burleigh, scott.c.burleigh@jpl.nasa.gov
+* Alan Hylton, alan.g.hylton@nasa.gov
+* Gilbert Clark, gc355804@ohio.edu
+* Greg Troxel, gdt@ir.bbn.com
+* Kevin Fall, kfall@qualcomm.com
+
+### Abstract
+
+William introduces the list to some preliminary work done at NASA GRC on the concept of firewalls for BP. The intent of the firewalls is to be able to manage local resources (e.g. guarantee the requirements for several applications on a single physical hub). Some brainstorming revealed some concepts for filtering:
+
+* Bundle size
+* Source/Destination URI
+* Lifetime
+* Service
+* Organization identity
+
+### Discussion
+
+Simon wanted to know if the firewall would support stateful flows. The GRC team has not covered this, but it may be useful.
+
+Scott did not believe that the team need to separate service/application from endpoint ID was necessary. It could be implemented as a standardization of EIDs instead. In fact, CCSDS is standardizing the ipn-scheme through IANA. Scott believes the goal of the project also includes ideas such as QoS and network management.
+
+In terms of firewalls, Greg identified a key issue - separating traffic that can transit a router and traffic that can access host. Additionally, Greg wanted a clarification for - what does the firewall protect and why. This is important because it affects the opportunistic transfer of traffic and because BP changes the notion of what is "inside the firewall".
+
+In regards to BCMP (equivalent to ICMP), Kevin believes the general experience is to have such signalling coupled with data transfer, which bundle protocol can do. Additional, the URI was intended to couple service and application usage together for anything can consume variable amounts of the URI (e.g. services, routing, etc). In summary, Kevin does not believe most of the filter items are fundamental or useful.

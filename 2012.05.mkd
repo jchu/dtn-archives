@@ -1,0 +1,39 @@
+# #2012.05 May 2012
+
+[[TOC]]
+
+
+## #farrell-5050-dis [RFC 5050 revision?](https://www.ietf.org/mail-archive/web/dtn-interest/current/msg04401.html) (5/16 - 5/30)
+
+### Participants
+
+* Stephen Farrell stephen.farrell@cs.tcd.ie
+* William Immerman, bill@immerman-inc.com
+* Scott Burleigh, scott.c.burleigh@jpl.nasa.gov
+* Lloyd Wood, l.wood@surrey.ac.uk
+
+### Abstract
+
+Stephen would like to start the discussion for the possible revision of RFC 5050, a now 5 year old document. With lessons learned and reference implementations in place, an update could be in store.
+
+Stephen proposes the following topics for discussion:
+
+* Should 5050 be revised?
+* What isn't good in 5050 and can be fixed?
+* What's missing and could be added?
+* What's awesome and why?
+* Do any 2119 MUST/SHOULD/MAy be changed?
+* What research questions need to be answered by 5050 is a barrier?
+* Is anyone interested in using DTN not based on BP?
+
+As assurance, Stephen notes that no one is saying 5050 is bad.
+
+### Discussion
+
+From the standpoint of PR, Bill wants to point out that any changes to 5050 could be a deterrent to those looking at BP as a solution for implementation or interoperability. If the DTN community shows too much sign of fluidity, others won't be able to rely on it.
+
+Scott would like more work done in terms of identifying names and distinguishing between `nodes` and `endpoints`. Several documentations use nodes and endpoints interchangeably - BSP, custody transfer, CBHE, PROPHET, etc. While it is true that a node may always be associated with a singleton endpoint, this association is in no way permanent. Scott believes that nodes should be defined as first-class entities in the DTN architecture.
+
+Stephen proposes a non-backwards compatible BP that would require security as a MUST implement feature. This would replace the address dictionary with compressed ids and not have an absolute time requirement. This would probably require a conversion layer between the old BP and new BP implementations. Scott is in favor of no dictionary and using CBHE as the compression algorithm. Aggregated bundle age would serve as the alternative to authoritative bundle creation time. Lloyd is rather not in favor of requiring security because not all networks will need, want, or afford security overhead. While absolute time has been a hindrance to BP adoption, uniquely identifying nodes for security may be difficult without timestamps.
+
+

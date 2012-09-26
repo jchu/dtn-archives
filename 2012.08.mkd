@@ -1,0 +1,70 @@
+# #aug2012 August 2012
+
+[[TOC]]
+
+
+## #ott-tcp-clayer-review [Review for TCP CL](https://www.ietf.org/mail-archive/web/dtn-interest/current/msg04545.html) (8/28)
+
+### Participants
+
+* Joerg Ott, jo@netlab.tkk.fi
+* Keith Scott, kscott@mitre.org
+* Vint Cerf, vint@google.com
+* Simon Perreault, simon.perreault@viagenie.ca
+* Lloyd Wood, l.wood@surrey.ac.uk
+
+### Abstract
+
+Reviews of the TCP Convergence Layer [[0]][ott-tcp-clayer-review-0] by Keith
+
+### Discussion
+
+Some highlights:
+
+DTN does not necessarily follow the Internet Layer Model. Any reference to the layers must be clarified to be when TCPCL is used. In this case, BP and TCPCL reside at the application level in the Internet Model.
+
+### References
+
+[ott-tcp-clayer-review-0]: https://datatracker.ietf.org/doc/draft-irtf-dtnrg-tcp-clayer/ "draft-irtf-dtnrg-tcp-clayer"
+[[0]](https://datatracker.ietf.org/doc/draft-irtf-dtnrg-tcp-clayer/) draft-irtf-dtnrg-tcp-clayer
+
+
+## #perreault-http-draft- [New Version Notification for draft-perreault-dtnrg-http-00.txt](https://www.ietf.org/mail-archive/web/dtn-interest/current/msg04520.html) (8/22 - 8/24)
+
+### Participants
+
+* Simon Perreault, simon.perreault@viagenie.ca
+* William D. Ivancic, william.d.ivancic@nasa.gov
+* Vint Cerf, vint@google.com
+* Dan Brown, dbrown@bit9.com
+* Marc Blanchet, marc.blanchet@viagenie.ca
+* Joerg Ott, jo@netlab.tkk.fi
+* Lloyd Wood, l.wood@surrey.ac.uk
+* John Zinky, jzinky@bbn.com
+
+### Abstract
+
+This draft details transporting HTTP over BP [[0]][perreault-http-draft--0].
+
+### Discussion
+
+William suggests a correction to section 4.4 on reliability, reminding that reliability cannot be done using BP custody transfer, but rather Bundle Security Protocol (BSP). Simon, however, clarifies that BSP provides integrity. Custodial transfer is enough to provide "reliability over an unreliable network" as in TCP. Lloyd, however, re-identifies the problem as `assured delivery`, clarifying that reliability projects against corruption, integrity protects against attackers, and that RFC5050 provides neither. Will mentions a study done by Alan Hilton at GRC with ION that demonstrates that custody actually decreased bundle delivery.
+
+Vint expressed concerns on how HTTP handles timeouts and bundle ordering. Dan Brown recollects his experience modifying TCP timeouts using Apache and browsers with no issues. Marc clarified the scenario emphasizing the proxy/cache mechanism to handle delays:
+
+1. On-board spacecraft HTTP over IP between a sensor/camera/... and an inboard IP-DTN gateway. This gateway implements an HTTP proxy.
+2. DTN space network.
+3. earth station that has DTN-IP gateway, implementing HTTP proxy and then relaying HTTP over IP.
+
+Vint agrees that the proxy isolates timing to local, low-delay paths. Joerg adds a paper on proxy design [[1]][perreault-http-draft--1]. John points to work done with the Phish Bouncer DTN-HTTP proxy (PbProxy) [[2]][perreault-http-draft--2], in which requests are made to update a local cache, rather than directly request for content.
+
+Lloyd mentions some work done for HTTP over DTN experiments [[2]][perreault-http-draft--2], [[3]][perreault-http-draft--3]. This required re-engineering existing network stacks to decouple the Internet model layers. Furthermore, the existing HTTP proxy/cache models aren't suited for DTNs. Lloyd believes HTTP does not add any new value to a DTN other than providing MIME functionality. The study previously concluded that BP as a DTN protocol was not accommodating towards HTTP - restricted http streaming, had insoluble fragmentation problems, no assured delivery, complex proxy translation and caching - thus, made the attempt to make a protocol independent of the underlying DTN protocol.
+
+### References
+
+[perreault-http-draft--0]: http://www.ietf.org/internet-drafts/draft-perreault-dtnrg-http-00.txt "draft-perreault-dtnrg-http-00.txt"
+[[0]](http://www.ietf.org/internet-drafts/draft-perreault-dtnrg-http-00.txt) draft-perreault-dtnrg-http-00.txt
+
+[perreault-http-draft--1]: http://dtn.dsg.cs.tcd.ie/n4c-summer09/summer09paper/refs/ott-http-dtn.pdf "Bundling the Web: HTTP over DTN"
+[[1]](http://dtn.dsg.cs.tcd.ie/n4c-summer09/summer09paper/refs/ott-http-dtn.pdf) Bundling the Web: HTTP over DTN
+

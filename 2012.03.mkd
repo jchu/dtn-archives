@@ -1,0 +1,36 @@
+# #2012.03 March 2012
+
+[[TOC]]
+
+## #farrell-ietf-83 (Very) draft minutes (3/27)
+
+### Participants
+
+* Stephen Farrell stephen.farrell@cs.tcd.ie
+
+### Abstract
+
+Notes from IETF-83 DTNRG session
+
+Some highlights:
+
+* Specs needed for convergence layer, application framework, naming, discovery/routing
+* IANA registrations for LTP, bundle protocol, CCSDS areas
+* BPQ extension in cooperation with ICN (information centric networking)
+* SQL based storage
+  * Part of Mitre code for DTN2
+  * Used in SAIL ICN
+* Cipher Suits
+  * Elliptic Curves added
+  * New Extension Integrity Block (EIB) - sigs for extensions
+* NURC - underwater sensor networks with DTN
+  * custom underwater convergence layer
+  * CBHE great for underwater
+  * current routing mechanisms don't help
+  * bundle level fragmentation heavyweight
+
+
+### References
+
+[farrell-ietf-83-0-0]: https://www.ietf.org/proceedings/83/minutes/minutes-83-dtnrg.txt "notes from IETF-83 DTNRG session"
+[[0]](https://www.ietf.org/proceedings/83/minutes/minutes-83-dtnrg.txt) notes from IETF-83 DTNRG session
